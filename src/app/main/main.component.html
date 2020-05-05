@@ -1,0 +1,4 @@
+<app-navigation-bar [exampleText]=exampleText (change)="changeView($event)"></app-navigation-bar>
+
+<table-view *ngIf="!displayView" (tableChange)="updateNavBar($event)"></table-view>
+<app-list-view *ngIf="displayView" (selected)="updateNavBar($event)"></app-list-view> 

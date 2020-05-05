@@ -1,0 +1,20 @@
+<table class="table table-image">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Job</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of list" (click)="RowSelected(user);">
+            <td><img src={{user.imgUrl}} class="img-fluid img-thumbnail" width="70px"></td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.job}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+    </tbody>
+</table>
