@@ -1,20 +1,27 @@
+
+
+<div id="mainContainer">
+
 <table class="table table-image">
     <thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Job</th>
-            <th scope="col">Age</th>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Info</th>
+            <th scope="col">Location</th>
+            <th scope="col">Date</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of list" (click)="RowSelected(user);">
             <td><img src={{user.imgUrl}} class="img-fluid img-thumbnail" width="70px"></td>
-            <td>{{user.name}}</td>
-            <td>{{user.surname}}</td>
-            <td>{{user.job}}</td>
-            <td>{{user.age}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.type}}</td>
+            <td>{{user.info}}</td>
+            <td>{{user.location}}</td>
+            <td>{{user.date|date}}</td>
         </tr>
     </tbody>
 </table>
+</div>

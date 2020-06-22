@@ -1,0 +1,11 @@
+<div id="mainContainer">
+    <div *ngIf="model !== undefined" class="form-group">
+        <label>Id:{{ model.id }}</label><br>
+        <label>Name:{{ model.date |date}}</label><br>
+        <label>Name:{{ model.info }}</label><br>
+        <label>Name:{{ model.location }}</label><br>
+        <textarea  disabled > model</textarea>
+        <app-form-create [model]="model" [edit]="true"></app-form-create>
+    </div>
+    <app-form-create [model]="model" [edit]="true"></app-form-create>
+</div>

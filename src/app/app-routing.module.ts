@@ -1,18 +1,27 @@
+import { FormCreateComponent } from './form-create/form-create.component';
+import { DetailsComponent } from './details/details.component';
 import { TableViewComponent } from './table-view/table-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
-import { MainComponent } from './main/main.component';
+
+
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 const routes: Routes = [
-  { path: 'table', component: ListViewComponent },
-  { path: 'list', component: TableViewComponent },
+  { path: 'list', component: ListViewComponent },
+  { path: 'table', component: TableViewComponent },
+  { path: 'event/:id', component: DetailsComponent },
+  { path: 'create', component: FormCreateComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

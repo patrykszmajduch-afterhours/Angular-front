@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { EventDetails } from '../data-provider.service';
 
 @Component({
   selector: 'table-panel',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./table-panel.component.css']
 })
 export class TablePanelComponent implements OnInit {
-  @Input()model:User;
+  @Input()model:EventDetails;
   constructor() { }
   onClick(){
     console.log(this.model);
@@ -15,12 +16,4 @@ export class TablePanelComponent implements OnInit {
   ngOnInit(): void {
   }
   @Output('change') iWasClick= new EventEmitter();
-}
-export interface User{
-  id:number;
-  name:string;
-  surname:string;
-  age:number;
-  job:string;
-  imgUrl:string;
 }

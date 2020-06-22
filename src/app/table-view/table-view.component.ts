@@ -1,5 +1,5 @@
-import { DataProviderService } from './../data-provider.service';
-import { User } from './../table-panel/table-panel.component';
+import { DataProviderService, EventDetails } from './../data-provider.service';
+
 
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
@@ -12,13 +12,15 @@ import { EventEmitter } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
   private dataProvider:DataProviderService;
-  listOfUsers:User[];
+  private listOfEvents:EventDetails[];
 
+  get ListOfEvents(){
+    return this.listOfEvents;
+  }
   @Output('tableChange') updateNavBar= new EventEmitter();  
-  actualClicked:User;
+  actualClicked:EventDetails;
 
   constructor(service: DataProviderService) { 
-    this.listOfUsers=service.load();
     this.dataProvider=service;
   }
 
@@ -30,6 +32,10 @@ export class TableViewComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.dataProvider.GetListOfEventDetails().subscribe(
+    (data: {}) => {
+      this.listOfEvents = data as Array<EventDetails>;
+      console.log(data);
+  });
   }
-
 }

@@ -1,22 +1,32 @@
-import { DataProviderService } from './../data-provider.service';
-import { User } from './../table-panel/table-panel.component';
+import { DataProviderService, EventDetails } from './../data-provider.service';
+
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-list-view',
+  selector: 'list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.css']
 })
 export class ListViewComponent implements OnInit {
-
-  list:User[];
+  
+  dataProvider:DataProviderService;
+  list:EventDetails[];
+  formIsHidden
   constructor(service:DataProviderService) { 
-    this.list=service.load();
+    this.dataProvider=service;
   }
+
   @Output() selected=new EventEmitter;
+
   ngOnInit(): void {
+    this.dataProvider.GetListOfEventDetails()
+    .subscribe((data: {}) => {
+      this.list = data as Array<EventDetails>;
+      console.log(data);
+    })
   }
-  RowSelected(u:User){
+
+  RowSelected(u:EventDetails){
     this.selected.emit(u);
     console.log(u);   // declare variable in component.
   }
