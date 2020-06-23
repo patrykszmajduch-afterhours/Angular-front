@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EventDetails } from '../data-provider.service';
+import { EventDetails, DataProviderService } from '../data-provider.service';
+import { DataStoreService } from '../data-store.service';
 
 @Component({
   selector: 'table-panel',
@@ -8,7 +9,12 @@ import { EventDetails } from '../data-provider.service';
 })
 export class TablePanelComponent implements OnInit {
   @Input()model:EventDetails;
-  constructor() { }
+  private dataStore:DataStoreService;
+  private dataProvider:DataProviderService;
+  constructor(dataStore:DataStoreService,dataProvider:DataProviderService) { 
+    this.dataStore=dataStore
+    this.dataProvider=dataProvider;
+  }
   onClick(){
     console.log(this.model);
     this.iWasClick.emit(this.model);
@@ -16,4 +22,9 @@ export class TablePanelComponent implements OnInit {
   ngOnInit(): void {
   }
   @Output('change') iWasClick= new EventEmitter();
+  editModel(){
+    this.dataStore.Model=this.model;
+
+  }
+  
 }

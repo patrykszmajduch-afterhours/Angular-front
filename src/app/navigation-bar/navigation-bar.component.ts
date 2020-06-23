@@ -11,7 +11,7 @@ export class NavigationBarComponent implements OnInit {
   tableIcon=faTable;
   listIcon=faListAlt;
   plusIcon=faPlus;
-  title:string="zad1";
+  title:string="zad2";
   currentView:ViewType=ViewType.List;
   @Output() change=new EventEmitter();
   @Input() exampleText="";

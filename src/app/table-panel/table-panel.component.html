@@ -4,9 +4,11 @@
         <ul>
             <li>Title: {{model.title}}</li>
             <li>Type: {{model.type}}</li>
-            <li>Date: {{model.date|date}}</li>
+            <li>Date: {{model.date| date}}</li>
             <li>Place: {{model.location}}</li>
             <li>Info: {{model.info}}</li>
         </ul>
+        <button (click)="editModel()">Edit</button>
+        <!-- <button (click)="deleteModel()">Delete</button> -->
     </div>
 </div>

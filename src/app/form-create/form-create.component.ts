@@ -4,6 +4,7 @@ import { DataProviderService } from '../data-provider.service';
 
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DataStoreService } from '../data-store.service';
 
 
 @Component({
@@ -25,8 +26,10 @@ export class FormCreateComponent implements OnInit {
     eventDateControl:new FormControl('',Validators.required),
   });
   
-  constructor(dataProvider: DataProviderService,private router: Router) {
+  constructor(dataProvider: DataProviderService,private router: Router,dataStore:DataStoreService) {
     this.dataProvider = dataProvider;
+    this.model=dataStore.Model;
+    console.log("MODEL!"+this.model);
   }
   
   ngOnInit(): void {

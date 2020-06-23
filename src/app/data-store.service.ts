@@ -14,4 +14,20 @@ export class DataStoreService implements OnInit {
   ngOnInit(): void {
     
   }
+  set Model(model:EventDetails){
+    this.model=model;
+  }
+  get Model(){
+    let temp = {} as EventDetails;
+    temp.id=2;
+    temp.title="this.eventTile";
+    temp.info="Info";
+    temp.type="baton";
+    let date: Date = new Date(); 
+    temp.date=date;
+    temp.location="test";
+    temp.imgUrl="1";
+    // return this.model;
+    return temp;
+  }
 }
