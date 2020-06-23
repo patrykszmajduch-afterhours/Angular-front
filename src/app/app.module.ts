@@ -15,6 +15,7 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailsComponent } from './details/details.component';
 import { FormCreateComponent } from './form-create/form-create.component';
+import { ImageExplorerComponent } from './image-explorer/image-explorer.component';
 
 // import { ListViewComponent } from './list-view/list-view.component';
 @NgModule({
@@ -25,7 +26,8 @@ import { FormCreateComponent } from './form-create/form-create.component';
     TableViewComponent,
     ListViewComponent,
     DetailsComponent,
-    FormCreateComponent
+    FormCreateComponent,
+    ImageExplorerComponent
   ],
   imports: [
     BrowserModule,

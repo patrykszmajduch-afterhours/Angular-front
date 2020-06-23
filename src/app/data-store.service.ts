@@ -18,7 +18,7 @@ export class DataStoreService implements OnInit {
     this.model=model;
   }
   get Model(){
-    let temp = {} as EventDetails;
+   /* let temp = {} as EventDetails;
     temp.id=2;
     temp.title="this.eventTile";
     temp.info="Info";
@@ -26,8 +26,8 @@ export class DataStoreService implements OnInit {
     let date: Date = new Date(); 
     temp.date=date;
     temp.location="test";
-    temp.imgUrl="1";
+    temp.imgUrl="1";*/
     // return this.model;
-    return temp;
+    return this.model;
   }
 }
