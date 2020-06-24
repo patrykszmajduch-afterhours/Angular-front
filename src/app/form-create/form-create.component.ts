@@ -24,6 +24,7 @@ export class FormCreateComponent implements OnInit {
     eventTypeControl:new FormControl('',Validators.required),//TODO: MUsi być polem wyboru typu lista
     eventLocationControl:new FormControl('',Validators.required),
     eventDateControl:new FormControl('',Validators.required),
+    eventImageControl:new FormControl('',Validators.required)
   });
   
   constructor(dataProvider: DataProviderService,private router: Router,dataStore:DataStoreService) {
@@ -42,7 +43,8 @@ export class FormCreateComponent implements OnInit {
       eventInfoControl: this.model.info,
       eventTypeControl: this.model.type,//TODO: MUsi być polem wyboru typu lista
       eventLocationControl: this.model.location,
-      eventDateControl: this.model.date})
+      eventDateControl: this.model.date
+      })
     }
     else{
       console.log("Nie dzialam");
@@ -98,4 +100,29 @@ export class FormCreateComponent implements OnInit {
     this.edit==true?this.form.disable():this.form.enable();
     this.edit=this.edit==true?false:true;
   }
+
+
+public imagePath;
+  imgURL: any;
+  public message: string;
+
+  preview(files) {
+    if (files.length === 0)
+      return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
+  }
+
+
 }
