@@ -23,8 +23,9 @@ export class NavigationBarComponent implements OnInit {
     this.change.emit(this.currentView);
   }
   
- 
+  
 }
+
 export enum ViewType{
   Table,
   List

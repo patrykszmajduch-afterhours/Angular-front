@@ -1,4 +1,4 @@
-import { DataProviderService, EventDetails } from './../data-provider.service';
+import { DataProviderService, EventDetailsResp } from './../data-provider.service';
 
 
 import { Component, OnInit, Output } from '@angular/core';
@@ -12,21 +12,22 @@ import { EventEmitter } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
   private dataProvider:DataProviderService;
-  private listOfEvents:EventDetails[];
+  private listOfEvents:EventDetailsResp[];
 
   get ListOfEvents(){
     return this.listOfEvents;
   }
   @Output('tableChange') updateNavBar= new EventEmitter();  
-  actualClicked:EventDetails;
+  actualClicked:EventDetailsResp;
 
   constructor(service: DataProviderService) { 
     this.dataProvider=service;
   }
 
-  updateClick(obj){
-    console.log("table view",obj);
-    this.updateNavBar.emit(obj);
+  updateList(obj){
+    this.listOfEvents=this.ListOfEvents.filter(({ id }) => id !== obj);
+    // console.log("table view",obj);
+    // this.updateNavBar.emit(obj);
   }
   
   
@@ -34,7 +35,7 @@ export class TableViewComponent implements OnInit {
   ngOnInit(): void {
     this.dataProvider.GetListOfEventDetails().subscribe(
     (data: {}) => {
-      this.listOfEvents = data as Array<EventDetails>;
+      this.listOfEvents = data as Array<EventDetailsResp>;
       console.log(data);
   });
   }

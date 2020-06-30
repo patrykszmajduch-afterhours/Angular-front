@@ -1,6 +1,6 @@
 import { ViewType } from './../navigation-bar/navigation-bar.component';
 import { Component, OnInit } from '@angular/core';
-import { EventDetails } from '../data-provider.service';
+import { EventDetailsResp } from '../data-provider.service';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateNavBar(obj:EventDetails){
+  updateNavBar(obj:EventDetailsResp){
     console.log("main view obj!!!!!!",obj);
     this.exampleText= "    ID: "+obj.id+" Name: "+obj.title+" Surname:"+obj.info;
   }

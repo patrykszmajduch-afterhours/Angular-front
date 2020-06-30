@@ -10,13 +10,13 @@ import { retry, catchError } from 'rxjs/operators';
 export class DataProviderService {
 
    
-  selected:EventDetails;
-  updateSelected(obj:EventDetails){
+  selected:EventDetailsResp;
+  updateSelected(obj:EventDetailsResp){
     this.selected=obj;
   }
   
   private http: HttpClient;
-  private listData: EventDetails[];
+  private listData: EventDetailsResp[];
   private jsonList: Observable<JSON[]>;
   private url="http://localhost:8080/";
   httpOptions = {
@@ -30,55 +30,48 @@ export class DataProviderService {
   } 
 
  //POST
- CreateEventDetails(obj:EventDetails):Observable<EventDetails>{
+ CreateEventDetails(obj:EventDetailsResp):Observable<EventDetailsResp>{
    console.log("create event details"+ JSON.stringify(obj) );
-  return this.http.post<EventDetails>(this.url + 'eventdetails/', JSON.stringify(obj), this.httpOptions)
+  return this.http.post<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(obj), this.httpOptions)
   .pipe(
     retry(1),
     catchError(this.errorHandl)
   )
 }
 //put
-UpdateEventDetails(id,data:EventDetails):Observable<EventDetails>
+UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
 {
-  return this.http.put<EventDetails>(this.url + 'update/'+id, JSON.stringify(data), this.httpOptions)
+  return this.http.put<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
     catchError(this.errorHandl)
   )
 }
   //GET LIST
-  GetListOfEventDetails(): Observable<EventDetails[]>{
+  GetListOfEventDetails(): Observable<EventDetailsResp[]>{
     console.log("wywołanie w service ",this.http.get(this.url+"eventdetails/list", { observe: 'response' }));
-     return this.http.get<EventDetails[]>(this.url+"eventdetails/").pipe(
+     return this.http.get<EventDetailsResp[]>(this.url+"eventdetails/").pipe(
       retry(1),
       catchError(this.errorHandl)
     );     
   }
   //GET
-  GetEventDetails(id:number): Observable<EventDetails>{
-    return this.http.get<EventDetails>(this.url+"eventdetails/"+id).pipe(
+  GetEventDetails(id:number): Observable<EventDetailsResp>{
+    return this.http.get<EventDetailsResp>(this.url+"eventdetails/"+id).pipe(
       retry(1),
       catchError(this.errorHandl)
     ); 
   }
   //DELETE
-  DeleteEventDetails(id:number):Observable<EventDetails>{
-    return this.http.delete<EventDetails>(this.url + 'eventdetails/' + id, this.httpOptions)
+  DeleteEventDetails(id:number):Observable<EventDetailsResp>{
+    return this.http.delete<EventDetailsResp>(this.url + 'eventdetails/' + id, this.httpOptions)
     .pipe(
       retry(),
       catchError(this.errorHandl)
     )
   }
-  // GetEventPhoto(id:number):Observable<Blob>{
-  //   return this.http.get<Blob>(this.url+id, { responseType: 'blob' }).pipe(
-  //     retry(1),
-  //     catchError(this.errorHandl)
-  //   ); 
-  // }
-  SaveImg(){
-    
-  }
+  
+  
   // Error handling
    errorHandl(error) {
     let errorMessage = '';
@@ -93,12 +86,23 @@ UpdateEventDetails(id,data:EventDetails):Observable<EventDetails>
     return throwError(errorMessage);
  }
 }
-export interface EventDetails{
+export interface EventDetailsResp{
   id:number;
   title:string;
   type:string;
   info:string;
   location:string;
   date:Date;
-  imgUrl:string;
+  imgExt:string|ArrayBuffer;
+  img:string|ArrayBuffer;
+}
+export interface EventDetailsCommunicationTEST{
+  id:number;
+  title:string;
+  type:string;
+  info:string;
+  location:string;
+  date:Date;
+  imgExt:string;
+  img:string|ArrayBuffer;
 }

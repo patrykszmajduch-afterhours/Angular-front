@@ -1,30 +1,30 @@
 import { EventDetailsResp } from './../data-provider.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DataProviderService } from '../data-provider.service';
-import {Location} from '@angular/common';
+import {Location, DatePipe} from '@angular/common';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataStoreService } from '../data-store.service';
 
 
 @Component({
-  selector: 'app-form-create',
-  templateUrl: './form-create.component.html',
-  styleUrls: ['./form-create.component.css']
+  selector: 'app-edit-form',
+  templateUrl: './edit-form.component.html',
+  styleUrls: ['./edit-form.component.css']
 })
-export class FormCreateComponent{
+export class EditFormComponent implements OnInit {
 
   dataProvider: DataProviderService;
-
+  model:EventDetailsResp;
   //image fields
-  private imgExt:string;
+  private imgExt:string| ArrayBuffer;
   imgURL: string | ArrayBuffer;
   public message: string;
-
+  public dateVal:Date;
 
   form= new FormGroup({
-    eventIdControl: new FormControl(''),
-    eventImageControl:new FormControl(null,Validators.required),
+    eventIdControl: new FormControl('',Validators.required),
+    eventImageControl:new FormControl(null),
     eventTitleControl: new FormControl('',Validators.required),
     eventInfoControl:new FormControl('',Validators.required),
     eventTypeControl:new FormControl('',Validators.required),
@@ -33,10 +33,32 @@ export class FormCreateComponent{
   });
   
   
-  constructor(dataProvider: DataProviderService,private router: Router,dataStore:DataStoreService,private _location: Location) {
+  constructor(dataProvider: DataProviderService,private router: Router,private dataStore:DataStoreService,private _location: Location) {
     this.dataProvider = dataProvider; 
   }
   
+  ngOnInit(): void {
+    let model = this.dataStore.Model;
+    console.log("Edycja!",model);
+    if(model===undefined)
+      this._location.back();
+
+    this.form.patchValue({
+      eventIdControl: model.id,
+      eventTitleControl: model.title,//'password')
+      eventInfoControl: model.info,
+      eventTypeControl: model.type,//TODO: MUsi być polem wyboru typu lista
+      eventLocationControl: model.location,
+      eventDateControl:"",
+      eventImageControl:""
+      });
+      this.imgURL=model.img;
+      this.dateVal=model.date;
+      this.imgExt=model.imgExt;
+    this.model=model;
+    
+     this.dataStore.Model=undefined;
+  }
 
   //GET
   get eventIdDetails(){
@@ -82,11 +104,11 @@ export class FormCreateComponent{
   SendRequest(){
     var temp=this.BuildRequest();
 
-    this.dataProvider.CreateEventDetails(temp).subscribe(
+    this.dataProvider.UpdateEventDetails(temp).subscribe(
       resp=>{console.log(resp);
       },
-      error=>console.log(error)
-      )//()=> this.router.navigate(['/list'])
+      error=>console.log(error),
+      ()=> this._location.back());//
   }
   
 

@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of list" (click)="RowSelected(user);">
-            <td><img src={{user.imgUrl}} class="img-fluid img-thumbnail" width="70px"></td>
+            <td><img [src]="user.img" class="img-fluid img-thumbnail" width="70px"></td>
             <td>{{user.title}}</td>
             <td>{{user.type}}</td>
             <td>{{user.info}}</td>

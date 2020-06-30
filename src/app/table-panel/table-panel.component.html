@@ -1,5 +1,5 @@
 <div (click)="onClick()" id="panel">
-    <div id="imageContainer" ><img src={{model.imgUrl}} ></div>
+    <div id="imageContainer" ><img src={{model.img}} ></div>
     <div id="info" >
         <ul>
             <li>Title: {{model.title}}</li>
@@ -9,6 +9,7 @@
             <li>Info: {{model.info}}</li>
         </ul>
         <button (click)="editModel()">Edit</button>
+        <button (click)="deleteModel()">Delete</button>
         <!-- <button (click)="deleteModel()">Delete</button> -->
     </div>
 </div>

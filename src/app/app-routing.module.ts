@@ -1,3 +1,4 @@
+import { EditFormComponent } from './edit-form/edit-form.component';
 import { FormCreateComponent } from './form-create/form-create.component';
 import { DetailsComponent } from './details/details.component';
 import { TableViewComponent } from './table-view/table-view.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'table', component: TableViewComponent },
   { path: 'event/:id', component: DetailsComponent },
   { path: 'create', component: FormCreateComponent },
+  { path: 'edit', component: EditFormComponent },
 ];
 
 @NgModule({

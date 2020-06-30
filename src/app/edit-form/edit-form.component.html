@@ -1,4 +1,4 @@
-Create
+Edit
 <div id="mainContainer">
     <form [formGroup]="form" class='formGroup' (ngSubmit)="SendRequest()">
         <div class="form-group">
@@ -14,7 +14,7 @@ Create
             <input formControlName="eventTitleControl" id="title" type="text" class="form-control">
 
             <label for="eventDate">Date</label><br>
-            <input formControlName="eventDateControl" id="eventDate" type="date" class="form-control">
+            <input formControlName="eventDateControl" id="eventDate" type="date" class="form-control"  [ngModel]="model.date | date:'yyyy-MM-dd'">
 
             <label for="evnetLocation">Location</label><br>
             <input formControlName="eventLocationControl" id="eventLocation" type="text" class="form-control">

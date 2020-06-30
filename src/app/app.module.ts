@@ -15,6 +15,9 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailsComponent } from './details/details.component';
 import { FormCreateComponent } from './form-create/form-create.component';
+
+import { EditFormComponent } from './edit-form/edit-form.component';
+import { DatePipe } from '@angular/common';
 // import { ImageExplorerComponent } from './image-explorer/image-explorer.component';
 
 // import { ListViewComponent } from './list-view/list-view.component';
@@ -27,6 +30,7 @@ import { FormCreateComponent } from './form-create/form-create.component';
     ListViewComponent,
     DetailsComponent,
     FormCreateComponent,
+    EditFormComponent,
     // ImageExplorerComponent
   ],
   imports: [
@@ -38,7 +42,7 @@ import { FormCreateComponent } from './form-create/form-create.component';
     FormsModule,
     ReactiveFormsModule,  
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 }
 

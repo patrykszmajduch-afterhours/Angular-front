@@ -1,4 +1,4 @@
-import { DataProviderService, EventDetails } from './../data-provider.service';
+import { DataProviderService, EventDetailsResp } from './../data-provider.service';
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -10,7 +10,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class ListViewComponent implements OnInit {
   
   dataProvider:DataProviderService;
-  list:EventDetails[];
+  list:EventDetailsResp[];
   formIsHidden
   constructor(service:DataProviderService) { 
     this.dataProvider=service;
@@ -21,12 +21,12 @@ export class ListViewComponent implements OnInit {
   ngOnInit(): void {
     this.dataProvider.GetListOfEventDetails()
     .subscribe((data: {}) => {
-      this.list = data as Array<EventDetails>;
+      this.list = data as Array<EventDetailsResp>;
       console.log(data);
     })
   }
 
-  RowSelected(u:EventDetails){
+  RowSelected(u:EventDetailsResp){
     this.selected.emit(u);
     console.log(u);   // declare variable in component.
   }

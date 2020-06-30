@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EventDetails, DataProviderService } from '../data-provider.service';
+import { EventDetailsResp, DataProviderService } from '../data-provider.service';
 import { DataStoreService } from '../data-store.service';
 
 @Component({
@@ -8,23 +9,26 @@ import { DataStoreService } from '../data-store.service';
   styleUrls: ['./table-panel.component.css']
 })
 export class TablePanelComponent implements OnInit {
-  @Input()model:EventDetails;
+  @Input()model:EventDetailsResp;
   private dataStore:DataStoreService;
   private dataProvider:DataProviderService;
-  constructor(dataStore:DataStoreService,dataProvider:DataProviderService) { 
+  constructor(dataStore:DataStoreService,dataProvider:DataProviderService,private router:Router) { 
     this.dataStore=dataStore
     this.dataProvider=dataProvider;
   }
   onClick(){
-    console.log(this.model);
-    this.iWasClick.emit(this.model);
+    // console.log(this.model);
+    // this.iWasClick.emit(this.model);
   }
   ngOnInit(): void {
   }
   @Output('change') iWasClick= new EventEmitter();
   editModel(){
     this.dataStore.Model=this.model;
-
+    console.log("Nawiguje!:",this.model);
+    this.router.navigate(['edit']);
   }
-  
+  deleteModel(){
+    this.dataProvider.DeleteEventDetails(this.model.id).subscribe(resp=>console.log(resp),err=>console.log(err),()=>{console.log("Success!");this.iWasClick.emit(this.model.id)});
+  }
 }
