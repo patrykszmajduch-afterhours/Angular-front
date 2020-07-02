@@ -17,6 +17,7 @@ export class TablePanelComponent implements OnInit {
     this.dataProvider=dataProvider;
   }
   onClick(){
+    this.router.navigate(["/event/"+this.model.id]);
     // console.log(this.model);
     // this.iWasClick.emit(this.model);
   }

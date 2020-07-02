@@ -1,11 +1,12 @@
 <div id="mainContainer">
-    <div *ngIf="model !== undefined" class="form-group">
+    <div *ngIf="model !== undefined" class="form-group center">
         <label>Id:{{ model.id }}</label><br>
+        <div id="imageContainerDetails" ><img src={{model.img}} ></div>
         <label>Name:{{ model.date |date}}</label><br>
         <label>Name:{{ model.info }}</label><br>
         <label>Name:{{ model.location }}</label><br>
         <textarea  disabled > model</textarea>
-        <app-form-create></app-form-create>
+        <div><button class="btn btn-dark mr-2" (click)="editModel()">edit</button><button class="btn btn-dark" (click)="deleteModel()">delete</button></div>
+        <button class="btn btn-light mt-2" (click)="back()">back</button>
     </div>
-    <app-form-create ></app-form-create>
 </div>

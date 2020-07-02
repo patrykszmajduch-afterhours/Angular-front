@@ -13,3 +13,45 @@ body{padding:20px;}
 .form-control.ng-invalid.ng-touched.ng-invalid{
     border: 2px solid red;
 }
+#panel{
+    display: flex;
+    float: left;
+    width: 33%;
+    height: 250px;
+    margin-right: 2px;
+    margin-left: 0px;
+    margin-top: 2px;
+    padding: 2% 2% 2% 2%;
+    background-color: gainsboro;
+
+}
+#imageContainer{
+    float: left;
+    width: 30%;
+    margin-left: 0;
+}
+#imageContainer img{
+    width: 100%;
+}
+#info{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#imageContainerDetails{
+    float: left;
+    width: 40%;
+    
+    margin-top: 20;
+    margin-right: 20;
+    padding: 10px 10px 10px 0px;
+}
+#imageContainerDetails img{
+    width: 100%;
+}
+#textContainerDetails{
+    margin-left:10;
+}
+.center {
+    margin: auto;
+    width: 50%;
+}

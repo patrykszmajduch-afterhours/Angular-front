@@ -1,3 +1,5 @@
+import { DataStoreService } from './../data-store.service';
+import { Router } from '@angular/router';
 import { DataProviderService, EventDetailsResp } from './../data-provider.service';
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -9,11 +11,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ListViewComponent implements OnInit {
   
-  dataProvider:DataProviderService;
+ 
   list:EventDetailsResp[];
-  formIsHidden
-  constructor(service:DataProviderService) { 
-    this.dataProvider=service;
+  constructor(private dataProvider:DataProviderService, private router:Router,private dataStore:DataStoreService) { 
   }
 
   @Output() selected=new EventEmitter;
@@ -26,9 +26,16 @@ export class ListViewComponent implements OnInit {
     })
   }
 
-  RowSelected(u:EventDetailsResp){
-    this.selected.emit(u);
-    console.log(u);   // declare variable in component.
+  RowSelected(model:EventDetailsResp){
+    this.router.navigate(["/event/"+model.id]);;   // declare variable in component.
   }
 
+  editModel(model){
+    this.dataStore.Model=model;
+    console.log("Nawiguje!:",model);
+    this.router.navigate(['edit']);
+  }
+  deleteModel(model){
+    this.dataProvider.DeleteEventDetails(model.id).subscribe(resp=>console.log(resp),err=>console.log(err),()=>{console.log("Success!");});
+  }
 }
