@@ -85,8 +85,8 @@ export class FormCreateComponent{
     this.dataProvider.CreateEventDetails(temp).subscribe(
       resp=>{console.log(resp);
       },
-      error=>console.log(error)
-      )//()=> this.router.navigate(['/list'])
+      error=>console.log(error),
+      ()=> this._location.back())//()=> this.router.navigate(['/list'])
   }
   
 

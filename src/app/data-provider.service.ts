@@ -66,7 +66,7 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
   DeleteEventDetails(id:number):Observable<EventDetailsResp>{
     return this.http.delete<EventDetailsResp>(this.url + 'eventdetails/' + id, this.httpOptions)
     .pipe(
-      retry(),
+      retry(1),
       catchError(this.errorHandl)
     )
   }
