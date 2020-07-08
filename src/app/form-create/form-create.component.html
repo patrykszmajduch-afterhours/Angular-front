@@ -2,10 +2,6 @@ Create
 <div id="mainContainer">
     <form [formGroup]="form" class='formGroup' (ngSubmit)="SendRequest()">
         <div class="form-group">
-            <!-- <div *ngIf="!isHidden">
-                <label for="eventId">Id:</label><br>
-                <input formControlName="eventIdControl" id="eventId" type="number" class="form-control">
-            </div> -->
             <span style="color:red;" *ngIf="message">{{message}}</span>
             <input formControlName="eventImageControl" #file type="file" accept='image/*' (change)="preview(file.files)" class="form-control"/>
             <img [src]="imgURL" height="200" *ngIf="imgURL">

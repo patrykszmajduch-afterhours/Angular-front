@@ -70,8 +70,7 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
       catchError(this.errorHandl)
     )
   }
-  
-  
+    
   // Error handling
    errorHandl(error) {
     let errorMessage = '';

@@ -96,7 +96,6 @@ export class FormCreateComponent{
   preview(files) {
     if (files.length === 0)
       return;
-
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
