@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -19,12 +20,8 @@ export class DataProviderService {
   private listData: EventDetailsResp[];
   private jsonList: Observable<JSON[]>;
   private url="http://localhost:8080/";
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-  constructor(http: HttpClient) {
+  httpOptions = new HttpHeaders().set('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTk1NTYwNzQzLCJVc2VyVHlwZSI6IlB1cnBsZSIsImlhdCI6MTU5NTU0Mjc0M30.7Ca5Or40COyIUZk23cKxF-wg0FTLNTuKUMEHBKRfiULuHRQgqhfO6YVzy5Bg9vd0qZ-XxE2zTrSGC317MzLZZw');
+  constructor(http: HttpClient,private auth:AuthService) {
     this.http = http;
     // this.jsonList=
   } 
@@ -32,7 +29,7 @@ export class DataProviderService {
  //POST
  CreateEventDetails(obj:EventDetailsResp):Observable<EventDetailsResp>{
    console.log("create event details"+ JSON.stringify(obj) );
-  return this.http.post<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(obj), this.httpOptions)
+  return this.http.post<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(obj), {headers:this.httpOptions})
   .pipe(
     retry(1),
     catchError(this.errorHandl)
@@ -41,7 +38,7 @@ export class DataProviderService {
 //put
 UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
 {
-  return this.http.put<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(data), this.httpOptions)
+  return this.http.put<EventDetailsResp>(this.url + 'eventdetails/', JSON.stringify(data),{headers:this.httpOptions})
   .pipe(
     retry(1),
     catchError(this.errorHandl)
@@ -49,7 +46,7 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
 }
   //GET LIST
   GetListOfEventDetails(): Observable<EventDetailsResp[]>{
-    console.log("wywołanie w service ",this.http.get(this.url+"eventdetails/list", { observe: 'response' }));
+    
      return this.http.get<EventDetailsResp[]>(this.url+"eventdetails/").pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -57,14 +54,14 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
   }
   //GET
   GetEventDetails(id:number): Observable<EventDetailsResp>{
-    return this.http.get<EventDetailsResp>(this.url+"eventdetails/"+id).pipe(
+    return this.http.get<EventDetailsResp>(this.url+"eventdetails/"+id,{headers:this.httpOptions}).pipe(
       retry(1),
       catchError(this.errorHandl)
     ); 
   }
   //DELETE
   DeleteEventDetails(id:number):Observable<EventDetailsResp>{
-    return this.http.delete<EventDetailsResp>(this.url + 'eventdetails/' + id, this.httpOptions)
+    return this.http.delete<EventDetailsResp>(this.url + 'eventdetails/' + id,{headers:this.httpOptions})
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -74,6 +71,7 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
   // Error handling
    errorHandl(error) {
     let errorMessage = '';
+    console.log(JSON.stringify(this.httpOptions));
     if(error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;

@@ -18,6 +18,7 @@ import { FormCreateComponent } from './form-create/form-create.component';
 
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { DatePipe } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 // import { ImageExplorerComponent } from './image-explorer/image-explorer.component';
 
 // import { ListViewComponent } from './list-view/list-view.component';
@@ -31,6 +32,7 @@ import { DatePipe } from '@angular/common';
     DetailsComponent,
     FormCreateComponent,
     EditFormComponent,
+    LoginComponent,
     // ImageExplorerComponent
   ],
   imports: [
