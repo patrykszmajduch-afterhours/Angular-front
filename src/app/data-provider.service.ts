@@ -20,7 +20,7 @@ export class DataProviderService {
   private listData: EventDetailsResp[];
   private jsonList: Observable<JSON[]>;
   private url="http://localhost:8080/";
-  httpOptions = new HttpHeaders().set('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTk1NTYwNzQzLCJVc2VyVHlwZSI6IlB1cnBsZSIsImlhdCI6MTU5NTU0Mjc0M30.7Ca5Or40COyIUZk23cKxF-wg0FTLNTuKUMEHBKRfiULuHRQgqhfO6YVzy5Bg9vd0qZ-XxE2zTrSGC317MzLZZw');
+  httpOptions = new HttpHeaders().set('Authorization','Bearer '+this.auth.currentUserValue.token);//TODO: zrobić interceptor
   constructor(http: HttpClient,private auth:AuthService) {
     this.http = http;
     // this.jsonList=
@@ -47,7 +47,7 @@ UpdateEventDetails(data:EventDetailsResp):Observable<EventDetailsResp>
   //GET LIST
   GetListOfEventDetails(): Observable<EventDetailsResp[]>{
     
-     return this.http.get<EventDetailsResp[]>(this.url+"eventdetails/").pipe(
+     return this.http.get<EventDetailsResp[]>(this.url+"eventdetails/",{headers:this.httpOptions}).pipe(
       retry(1),
       catchError(this.errorHandl)
     );     
