@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { pluck, share, shareReplay, tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
+
+const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +15,10 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): User {
@@ -32,11 +35,25 @@ export class AuthService {
         return user;
       }));
   }
+  jwtIsExpired() {
+    console.log("JWT EXPIRED", this.currentUserValue.token);
+    this.isAdmin();
+    return helper.isTokenExpired((this.currentUserValue.token));
+  }
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+  isAdmin() {
+    if (helper.decodeToken(this.currentUserValue.token).UserType === "[admin]") {
+      console.log("User TYP admin", helper.decodeToken(this.currentUserValue.token).UserType);
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
 export interface User {

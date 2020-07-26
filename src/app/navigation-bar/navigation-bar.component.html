@@ -20,11 +20,14 @@
           <fa-icon [icon]="plusIcon"></fa-icon>Add
         </a>
       </li>
+      <li class="float-right">
+        <a class="nav-link" (click)="auth.logout()">
+          <fa-icon [icon]="logOutIcon"></fa-icon>Log out
+        </a>
+      </li>
     </ul>
   </div>
-       {{exampleText}}
-    
-  
+       {{exampleText}}  
 </nav>
 <br>
 

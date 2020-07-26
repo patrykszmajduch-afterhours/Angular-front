@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Zad1';
+  title = 'Zad3';
 
   updateData(obj){
     console.log("main container!!!!!!",obj);
   }
-  
 }

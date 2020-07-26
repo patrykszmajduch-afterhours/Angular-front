@@ -20,7 +20,7 @@ export class DataProviderService {
   private listData: EventDetailsResp[];
   private jsonList: Observable<JSON[]>;
   private url="http://localhost:8080/";
-  httpOptions = new HttpHeaders().set('Authorization','Bearer '+this.auth.currentUserValue.token);//TODO: zrobić interceptor
+  httpOptions = new HttpHeaders();//TODO: zrobić interceptor
   constructor(http: HttpClient,private auth:AuthService) {
     this.http = http;
     // this.jsonList=

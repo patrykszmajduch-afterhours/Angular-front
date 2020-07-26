@@ -1,3 +1,4 @@
+import { AuthGuardPermissions } from './auth.guard.permissions';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { FormCreateComponent } from './form-create/form-create.component';
 import { DetailsComponent } from './details/details.component';
@@ -16,10 +17,11 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: 'list', component: ListViewComponent,canActivate: [AuthGuard] },
   { path: 'table', component: TableViewComponent,canActivate: [AuthGuard] },
-  { path: 'event/:id', component: DetailsComponent,canActivate: [AuthGuard] },
-  { path: 'create', component: FormCreateComponent,canActivate: [AuthGuard] },
-  { path: 'edit', component: EditFormComponent,canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: TableViewComponent,canActivate: [AuthGuard] },
+  { path: 'event/:id', component: DetailsComponent,canActivate: [AuthGuardPermissions] },
+  { path: 'create', component: FormCreateComponent,canActivate: [AuthGuardPermissions] },
+  { path: 'edit', component: EditFormComponent,canActivate: [AuthGuardPermissions] },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

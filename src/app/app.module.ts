@@ -1,3 +1,4 @@
+import { AuthenticationInterceptor } from './AuthenticationInterceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
@@ -10,7 +11,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TablePanelComponent } from './table-panel/table-panel.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TableViewComponent } from './table-view/table-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailsComponent } from './details/details.component';
@@ -33,7 +34,6 @@ import { LoginComponent } from './login/login.component';
     FormCreateComponent,
     EditFormComponent,
     LoginComponent,
-    // ImageExplorerComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +44,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,  
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent]
 }
 

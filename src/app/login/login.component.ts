@@ -53,13 +53,14 @@ export class LoginComponent {
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
+                data => {console.log("Data!");
                     this.router.navigate([this.returnUrl]);
                     console.log(data);
                     console.log("user:!");
                     console.log(this.authenticationService.currentUserValue.token);
                 },
                 error => {
+                    console.log(this.authenticationService.currentUserValue);
                     this.error = error;
                     this.loading = false;
                 });

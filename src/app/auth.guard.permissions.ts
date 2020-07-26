@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class AuthGuardPermissions implements CanActivate {
     constructor(
         private router: Router,
         private authenticationService: AuthService,
@@ -16,10 +16,9 @@ export class AuthGuard implements CanActivate {
         if (currentUser) {
             if(this.authenticationService.jwtIsExpired()){
                 this.authenticationService.logout();
-               // logged in so return true
             }
             else{
-                return true;
+                return  this.authenticationService.isAdmin();
             }
         }
         // not logged in so redirect to login page with the return url
@@ -30,4 +29,5 @@ export class AuthGuard implements CanActivate {
         this.authenticationService.logout();
         this.router.navigate(['/']);
     }
+    
 }
