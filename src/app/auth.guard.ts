@@ -16,7 +16,6 @@ export class AuthGuard implements CanActivate {
         if (currentUser) {
             if(this.authenticationService.jwtIsExpired()){
                 this.authenticationService.logout();
-               // logged in so return true
             }
             else{
                 return true;
@@ -29,5 +28,8 @@ export class AuthGuard implements CanActivate {
     logout(){
         this.authenticationService.logout();
         this.router.navigate(['/']);
+    }
+    isAdmin(){
+        return this.authenticationService.isAdmin();
     }
 }

@@ -1,7 +1,10 @@
 <div id="mainContainer">
    
-   <table-panel *ngFor="let model of ListOfEvents" [model]="model"
+   <table-panel *ngFor="let model of pageOfItems" [model]="model"
       (change)="updateList($event)"></table-panel>
    <br clear="both">
-
+   <br>
+   <div class="d-flex justify-content-center">
+      <jw-pagination [items]="ListOfEvents" (changePage)="onChangePage($event)"></jw-pagination>
+   </div>
 </div>

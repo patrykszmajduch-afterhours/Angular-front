@@ -14,6 +14,8 @@ export class ListViewComponent implements OnInit {
   
  
   list:EventDetailsResp[];
+  pageOfItems: Array<any>;
+  
   constructor(private dataProvider:DataProviderService, private router:Router,private dataStore:DataStoreService,public auth:AuthService) { 
   }
 
@@ -38,5 +40,10 @@ export class ListViewComponent implements OnInit {
   }
   deleteModel(model){
     this.dataProvider.DeleteEventDetails(model.id).subscribe(resp=>console.log(resp),err=>console.log(err),()=>{console.log("Success!");});
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 }

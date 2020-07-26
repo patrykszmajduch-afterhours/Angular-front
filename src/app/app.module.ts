@@ -21,7 +21,8 @@ import { EditFormComponent } from './edit-form/edit-form.component';
 import { DatePipe } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 // import { ImageExplorerComponent } from './image-explorer/image-explorer.component';
-
+import { JwPaginationModule } from 'jw-angular-pagination';
+import { FilterComponent } from './filter/filter.component';
 // import { ListViewComponent } from './list-view/list-view.component';
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     FormCreateComponent,
     EditFormComponent,
     LoginComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,  
+    JwPaginationModule
   ],
   providers: [DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],

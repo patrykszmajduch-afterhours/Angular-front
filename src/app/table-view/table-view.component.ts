@@ -11,32 +11,38 @@ import { EventEmitter } from '@angular/core';
 })
 export class TableViewComponent implements OnInit {
 
-  private dataProvider:DataProviderService;
-  private listOfEvents:EventDetailsResp[];
+  private dataProvider: DataProviderService;
+  private listOfEvents: EventDetailsResp[];
 
-  get ListOfEvents(){
+  pageOfItems: Array<any>;
+
+  get ListOfEvents() {
     return this.listOfEvents;
   }
-  @Output('tableChange') updateNavBar= new EventEmitter();  
-  actualClicked:EventDetailsResp;
+  @Output('tableChange') updateNavBar = new EventEmitter();
+  actualClicked: EventDetailsResp;
 
-  constructor(service: DataProviderService) { 
-    this.dataProvider=service;
+  constructor(service: DataProviderService) {
+    this.dataProvider = service;
   }
 
-  updateList(obj){
-    this.listOfEvents=this.ListOfEvents.filter(({ id }) => id !== obj);
+  updateList(obj) {
+    this.listOfEvents = this.ListOfEvents.filter(({ id }) => id !== obj);
     // console.log("table view",obj);
     // this.updateNavBar.emit(obj);
   }
-  
-  
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+  }
+
 
   ngOnInit(): void {
     this.dataProvider.GetListOfEventDetails().subscribe(
-    (data: {}) => {
-      this.listOfEvents = data as Array<EventDetailsResp>;
-      console.log(data);
-  });
+      (data: {}) => {
+        this.listOfEvents = data as Array<EventDetailsResp>;
+        console.log(data);
+      });
   }
 }

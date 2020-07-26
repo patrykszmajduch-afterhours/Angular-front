@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let model of list" (click)="RowSelected(model);">
+        <tr *ngFor="let model of pageOfItems" (click)="RowSelected(model);">
             <td><img [src]="model.img" class="img-fluid img-thumbnail" width="70px"></td>
             <td>{{model.title}}</td>
             <td>{{model.type}}</td>
@@ -24,8 +24,11 @@
             <td>{{model.date|date}}</td>
             <td  *ngIf="auth.isAdmin()"><button class="btn btn-dark mr-2"(click)="editModel(model)">Edit</button>
                 <button class="btn btn-dark " (click)="deleteModel(model)">Delete</button></td>
-
         </tr>
     </tbody>
 </table>
+<br>
+<div class="d-flex justify-content-center">
+<jw-pagination [items]="list" (changePage)="onChangePage($event)"></jw-pagination>
+</div>
 </div>

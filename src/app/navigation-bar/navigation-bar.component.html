@@ -15,7 +15,7 @@
           <fa-icon [icon]="listIcon"></fa-icon>List
         </a>
       </li>
-      <li class="nav-item mx-2" routerLinkActive="active current">
+      <li *ngIf="auth.isAdmin()" class="nav-item mx-2" routerLinkActive="active current">
         <a class="nav-link" routerLink="/create">
           <fa-icon [icon]="plusIcon"></fa-icon>Add
         </a>

@@ -36,8 +36,10 @@ export class AuthService {
       }));
   }
   jwtIsExpired() {
-    console.log("JWT EXPIRED", this.currentUserValue.token);
-    this.isAdmin();
+    
+    if(!this.currentUserValue){
+      return true;
+    }
     return helper.isTokenExpired((this.currentUserValue.token));
   }
 

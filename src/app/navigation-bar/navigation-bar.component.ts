@@ -25,6 +25,7 @@ export class NavigationBarComponent implements OnInit {
     this.currentView=(event.target.id=="tableBtn")?ViewType.Table:ViewType.List;
     this.change.emit(this.currentView);
   } 
+ 
 }
 
 export enum ViewType{
