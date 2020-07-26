@@ -22,7 +22,7 @@
             <td>{{model.info}}</td>
             <td>{{model.location}}</td>
             <td>{{model.date|date}}</td>
-            <td><button class="btn btn-dark mr-2"(click)="editModel(model)">Edit</button>
+            <td  *ngIf="auth.isAdmin()"><button class="btn btn-dark mr-2"(click)="editModel(model)">Edit</button>
                 <button class="btn btn-dark " (click)="deleteModel(model)">Delete</button></td>
 
         </tr>

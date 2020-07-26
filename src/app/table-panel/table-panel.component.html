@@ -8,8 +8,9 @@
             <li>Place: {{model.location}}</li>
             <li>Info: {{model.info}}</li>
         </ul>
+        <div *ngIf="auth.isAdmin()">
         <button  class="btn btn-dark mr-2" (click)="editModel()">Edit</button>
-        <button  class="btn btn-dark mr-2" (click)="deleteModel()">Delete</button>
+        <button  class="btn btn-dark mr-2" (click)="deleteModel()">Delete</button></div>
         <!-- <button (click)="deleteModel()">Delete</button> -->
     </div>
 </div>

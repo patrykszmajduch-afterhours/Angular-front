@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { EventDetailsResp } from './../data-provider.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DataProviderService } from '../data-provider.service';

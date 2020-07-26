@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventDetailsResp, DataProviderService } from '../data-provider.service';
@@ -12,7 +13,7 @@ export class TablePanelComponent implements OnInit {
   @Input()model:EventDetailsResp;
   private dataStore:DataStoreService;
   private dataProvider:DataProviderService;
-  constructor(dataStore:DataStoreService,dataProvider:DataProviderService,private router:Router) { 
+  constructor(dataStore:DataStoreService,dataProvider:DataProviderService,private router:Router,public auth:AuthService) { 
     this.dataStore=dataStore
     this.dataProvider=dataProvider;
   }

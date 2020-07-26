@@ -6,7 +6,7 @@
         <label>Name:{{ model.info }}</label><br>
         <label>Name:{{ model.location }}</label><br>
         <textarea  disabled > model</textarea>
-        <div><button class="btn btn-dark mr-2" (click)="editModel()">edit</button><button class="btn btn-dark" (click)="deleteModel()">delete</button></div>
+        <div *ngIf="auth.isAdmin()"><button class="btn btn-dark mr-2" (click)="editModel()">edit</button><button class="btn btn-dark" (click)="deleteModel()">delete</button></div>
         <button class="btn btn-light mt-2" (click)="back()">back</button>
     </div>
 </div>

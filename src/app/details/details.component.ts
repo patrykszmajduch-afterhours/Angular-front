@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { DataStoreService } from './../data-store.service';
 import { DataProviderService, EventDetailsResp } from './../data-provider.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import {Location} from '@angular/common';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,private router:Router,private dataProvider:DataProviderService,private _location: Location,private dataStore:DataStoreService) { }
+  constructor(private route:ActivatedRoute,private router:Router,private dataProvider:DataProviderService,private _location: Location,private dataStore:DataStoreService,public auth:AuthService) { }
   public model:EventDetailsResp;
   ngOnInit(): void {
     this.route.paramMap

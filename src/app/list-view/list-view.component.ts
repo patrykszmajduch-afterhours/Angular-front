@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { DataStoreService } from './../data-store.service';
 import { Router } from '@angular/router';
 import { DataProviderService, EventDetailsResp } from './../data-provider.service';
@@ -13,7 +14,7 @@ export class ListViewComponent implements OnInit {
   
  
   list:EventDetailsResp[];
-  constructor(private dataProvider:DataProviderService, private router:Router,private dataStore:DataStoreService) { 
+  constructor(private dataProvider:DataProviderService, private router:Router,private dataStore:DataStoreService,public auth:AuthService) { 
   }
 
   @Output() selected=new EventEmitter;
