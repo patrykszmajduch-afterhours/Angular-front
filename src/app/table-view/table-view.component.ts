@@ -12,7 +12,7 @@ import { EventEmitter } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
   private dataProvider: DataProviderService;
-  private listOfEvents: EventDetailsResp[];
+  public listOfEvents: EventDetailsResp[];
 
   pageOfItems: Array<any>;
 
@@ -42,7 +42,8 @@ export class TableViewComponent implements OnInit {
     this.dataProvider.GetListOfEventDetails().subscribe(
       (data: {}) => {
         this.listOfEvents = data as Array<EventDetailsResp>;
-        console.log(data);
+       
+        console.log(data, this.listOfEvents[0].date);
       });
   }
 }

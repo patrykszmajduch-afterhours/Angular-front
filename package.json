@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "generate": "swagger-angular-generator -s src/api/scheme.json -d src/api/generated"
   },
   "private": true,
   "dependencies": {
@@ -31,9 +32,11 @@
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.0",
+    "json-schema-ref-parser": "^9.0.6",
     "jw-angular-pagination": "^1.2.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
+    "swagger-angular-generator": "^4.2.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -54,6 +57,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-swagger-gen": "^2.3.0",
     "protractor": "^6.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",

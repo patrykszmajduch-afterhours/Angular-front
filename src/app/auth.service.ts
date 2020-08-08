@@ -28,6 +28,7 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/authenticate`, { username, password })
       .pipe(map(user => {
+        user.username=username;
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -36,24 +37,31 @@ export class AuthService {
       }));
   }
   jwtIsExpired() {
-    
-    if(!this.currentUserValue){
+
+    if (!this.currentUserValue) {
       return true;
     }
-    return helper.isTokenExpired((this.currentUserValue.token));
+    else {
+      return helper.isTokenExpired((this.currentUserValue.token));
+    }
   }
 
   logout() {
     // remove user from local storage to log user out
+    console.log("logout#");
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
   isAdmin() {
-    if (helper.decodeToken(this.currentUserValue.token).UserType === "[admin]") {
-      console.log("User TYP admin", helper.decodeToken(this.currentUserValue.token).UserType);
-      return true;
-    }
-    else{
+
+    const usr = this.currentUserValue;
+    if (usr != null) {
+      if (helper.decodeToken(usr.token).UserType === "[admin]") {
+        return true;
+      }
+      else {
+        return false;
+      }
       return false;
     }
   }
