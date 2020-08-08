@@ -20,7 +20,7 @@
           <fa-icon [icon]="plusIcon"></fa-icon>Add
         </a>
       </li>
-      <li class="float-right">
+      <li *ngIf="auth.isLogIn()" class="float-right">
         <a class="nav-link" (click)="auth.logout()">
           <fa-icon [icon]="logOutIcon"></fa-icon>Log out
         </a>

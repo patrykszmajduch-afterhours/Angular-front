@@ -33,4 +33,7 @@ export class AuthGuard implements CanActivate {
     isAdmin(){
         return this.authenticationService.isAdmin();
     }
+    isLogIn(){
+        return this.authenticationService.currentUserValue!=null&&this.authenticationService.currentUserValue!==undefined
+    }
 }
