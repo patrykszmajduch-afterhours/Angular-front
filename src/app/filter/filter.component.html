@@ -1,0 +1,38 @@
+<form [formGroup]="form" class='formGroup'>
+  <div class="d-flex justify-content-center">
+    <div class="p-3">
+      <fa-icon [icon]="searchIcon"></fa-icon>
+      Filters:<br>
+      <button class="btn btn-outline-secondary btn-sm mx-auto" (click)="cleareFiltr()">X Clear</button>
+      <br class="p-2">
+      <button class="p-2 btn btn-outline-secondary btn-sm mx-auto" (click)="exportData()">
+        <fa-icon [icon]="exportIcon"></fa-icon>Export
+      </button>
+    </div>
+    <div class="p-2">
+      <label class="p-2" for="ftitle">Title</label>
+      <input formControlName="controlTitle" type="text" id="ftitle" name="ftitle">
+    </div>
+    <div class="p-2">
+      <label class="p-2" for="ftype">Type</label>
+      <input formControlName="controlType" type="text" id="fname" name="fname">
+    </div>
+    <div class="p-2">
+      <label class="p-2" for="finfo">Info</label>
+      <input formControlName="controlInfo" type="text" id="finfo" name="finfo">
+    </div>
+    <div class="p-2">
+      <label class="p-2" for="flocation">Location</label>
+      <input formControlName="controlLocation" type="text" id="flocation" name="flocation">
+    </div>
+    <div class="p-2">
+      <label class="p-2" for="fdate">Date</label>
+      <input formControlName="controlDate" type="date" id="fdate" name="fdate" [ngModel]="datePop | date:'yyyy-MM-dd'">
+    </div>
+    <div class="p-2">
+      <button class="btn btn-secondary mx-auto" (click)="btnSearch()"> Search</button>
+    </div>
+    
+  </div>
+
+</form>
